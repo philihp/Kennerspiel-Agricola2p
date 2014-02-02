@@ -8,7 +8,7 @@ public class Element {
 	
 	public Element(Board board) {
 		this.board = board;
-		board.elements.add(this);
+		board.allElements.add(this);
 		touch();
 	}
 	

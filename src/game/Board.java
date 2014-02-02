@@ -16,8 +16,8 @@ abstract public class Board {
 	 * @param command String
 	 * @throws GameError
 	 */
-	public void runCommand(String command) throws GameError {
-		throw new UnsupportedOperationException(command);
+	public void runCommand(Command command) throws GameError {
+		throw new UnsupportedOperationException();
 	}
 	
 	/**

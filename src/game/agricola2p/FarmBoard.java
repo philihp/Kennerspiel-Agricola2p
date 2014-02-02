@@ -4,11 +4,14 @@ import java.util.*;
 
 public class FarmBoard extends Element {
 	
-	protected List<Resource> resources;
+	protected List<Element> resources;
+	
+	protected final PlayerColor color;
 
-	public FarmBoard(Board board) {
+	public FarmBoard(Board board, PlayerColor color) {
 		super(board);
-		this.resources = new ArrayList<Resource>();
+		this.color = color;
+		this.resources = new ArrayList<Element>();
 	}
 	
 }

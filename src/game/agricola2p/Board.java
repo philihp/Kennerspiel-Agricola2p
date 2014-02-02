@@ -1,39 +1,40 @@
 package game.agricola2p;
 
+import game.Command;
 import game.GameError;
+import static game.agricola2p.PlayerColor.*;
 import java.util.*;
 
 public class Board extends game.Board {
 	
 	public int move;
-	public List<Element> elements;
+	public List<Element> allElements;
 	
 	protected GameBoard gameBoard;
-	protected EnumMap<PlayerColor, FarmBoard> farmBoard;
+	protected EnumMap<PlayerColor, FarmBoard> farmBoards;
 	
-	protected PlayerColor startingPlayer;
 	protected PlayerColor currentPlayer;
 	
 	public Board() {
 		this.move = 0;
-		elements = new ArrayList<Element>();
+		allElements = new ArrayList<Element>();
+		
+		farmBoards = new EnumMap<PlayerColor, FarmBoard>(PlayerColor.class);
+		farmBoards.put(RED, new FarmBoard(this, RED));
+		farmBoards.put(BLUE, new FarmBoard(this, BLUE));
+		
+		// FarmBoards must be done first, because GameBoard creates
+		// the Actions, and ActionStartingPlayer1Wood tries to give
+		// the StartingPlayerToken to one of the FarmBoards.
 		gameBoard = new GameBoard(this);
-		farmBoard = new EnumMap<PlayerColor, FarmBoard>(PlayerColor.class);
-		farmBoard.put(PlayerColor.RED, new FarmBoard(this));
-		farmBoard.put(PlayerColor.BLUE, new FarmBoard(this));
-		startingPlayer = PlayerColor.RED;
-	}
-	
-	protected void onRoundStart() {
-		currentPlayer = startingPlayer;
 	}
 	
 	protected FarmBoard activeFarm() {
-		return farmBoard.get(currentPlayer);
+		return farmBoards.get(currentPlayer);
 	}
 
 	@Override
-	public void runCommand(String command) throws GameError {
+	public void runCommand(Command command) throws GameError {
 		move++;
 	}
 

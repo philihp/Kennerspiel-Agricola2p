@@ -7,13 +7,13 @@ import game.GameError;
 
 abstract class Action extends Element {
 	
-	List<Resource> resources;
+	List<Element> resources;
 	
 	public Worker occupant = null;
 	
 	public Action(Board board) {
 		super(board);
-		resources = new ArrayList<Resource>();
+		resources = new ArrayList<Element>();
 	}
 	
 	protected void onTake() throws GameError {

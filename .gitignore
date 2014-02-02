@@ -1,0 +1,9 @@
+*.class
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+.classpath
+.project
+.settings/
+bin/
