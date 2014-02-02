@@ -6,7 +6,7 @@ import java.util.*;
 public class ActionFences extends Action {
 	
 	public ActionFences(Board board) {
-		super(board);
+		super("FENCE", board);
 	}
 	
 	//TODO

@@ -4,9 +4,9 @@ import game.GameError;
 import java.util.*;
 
 public class Action2Stone extends Action {
-
+	
 	public Action2Stone(Board board) {
-		super(board);
+		super("2S", board);
 	}
 
 	@Override

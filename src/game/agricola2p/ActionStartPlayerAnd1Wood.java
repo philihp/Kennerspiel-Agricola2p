@@ -9,7 +9,7 @@ public class ActionStartPlayerAnd1Wood extends Action {
 	private StartingPlayerToken startingPlayerToken; 
 
 	public ActionStartPlayerAnd1Wood(Board board, StartingPlayerToken startingPlayerToken) {
-		super(board);
+		super("SP1W", board);
 		this.startingPlayerToken = startingPlayerToken;
 		board.farmBoards.get(RED).resources.add(startingPlayerToken);
 	}
@@ -32,6 +32,7 @@ public class ActionStartPlayerAnd1Wood extends Action {
 		
 		// tell the token who its new owner is
 		startingPlayerToken.owner = board.currentPlayer;
+		startingPlayerToken.touch();
 
 	}
 	

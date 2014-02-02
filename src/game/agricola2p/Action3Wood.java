@@ -4,10 +4,9 @@ import game.GameError;
 import java.util.*;
 
 public class Action3Wood extends Action {
-	
 
 	public Action3Wood(Board board) {
-		super(board);
+		super("3W", board);
 	}
 
 	@Override

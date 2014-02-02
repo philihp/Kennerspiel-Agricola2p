@@ -1,8 +1,10 @@
 package game;
 
-import java.util.Random;
+import java.util.*;
 
 abstract public class Board {
+	
+	private List<Command> history = new ArrayList<Command>();
 	
 	protected Random rng; 
 	
@@ -17,8 +19,17 @@ abstract public class Board {
 	 * @throws GameError
 	 */
 	public void runCommand(Command command) throws GameError {
-		throw new UnsupportedOperationException();
+		history.add(command);
+		command.execute();
 	}
+	
+	/**
+	 * Given a command from the user, it finds an actual Command token object
+	 * 
+	 * @param string Command
+	 * @return Command object
+	 */
+	public abstract Command getCommand(String string);
 	
 	/**
 	 * Do various things before displaying that we normally don't want

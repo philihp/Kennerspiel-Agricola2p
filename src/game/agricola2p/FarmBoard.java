@@ -12,6 +12,10 @@ public class FarmBoard extends Element {
 		super(board);
 		this.color = color;
 		this.resources = new ArrayList<Element>();
+
+		resources.add(new Worker(board, color));
+		resources.add(new Worker(board, color));
+		resources.add(new Worker(board, color));
 	}
 	
 }

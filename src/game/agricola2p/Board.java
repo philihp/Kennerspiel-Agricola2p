@@ -33,9 +33,13 @@ public class Board extends game.Board {
 		return farmBoards.get(currentPlayer);
 	}
 
-	@Override
 	public void runCommand(Command command) throws GameError {
+		super.runCommand(command);
 		move++;
+	}
+
+	public Command getCommand(String string) {
+		return null;
 	}
 
 }

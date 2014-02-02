@@ -2,8 +2,11 @@ package game.agricola2p;
 
 public class Worker extends Element {
 	
-	public Worker(Board board) {
+	public final PlayerColor color; 
+	
+	public Worker(Board board, PlayerColor color) {
 		super(board);
+		this.color = color;
 	}
 
 }

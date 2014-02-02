@@ -8,16 +8,21 @@ public class GameBoard extends Element {
 
 	protected Map<String, Action> actions;
 	private StartingPlayerToken startingPlayerToken;
+	
+	private static void addAction(Map<String, Action> map, Action action) {
+		map.put(action.id, action);
+	}
+	
 
 	public GameBoard(Board board) {
 		super(board);
 		this.actions = new HashMap<String, Action>();
 		this.startingPlayerToken = new StartingPlayerToken(board);
-		actions.put("SP1W", new ActionStartPlayerAnd1Wood(board, startingPlayerToken));
-		actions.put("3W",new Action3Wood(board));
-		actions.put("1S",new Action1Stone(board));
-		actions.put("2S",new Action2Stone(board));
-		actions.put("FENCES", new ActionFences(board));
+		addAction(actions, new ActionStartPlayerAnd1Wood(board, this.startingPlayerToken));
+		addAction(actions, new Action3Wood(board));
+		addAction(actions, new Action1Stone(board));
+		addAction(actions, new Action2Stone(board));
+		addAction(actions, new ActionFences(board));
 	}
 
 	@Override
