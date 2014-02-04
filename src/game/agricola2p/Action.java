@@ -20,9 +20,19 @@ abstract class Action extends Element {
 	}
 	
 	protected void onTake() throws GameError {
-		touch();
+		Worker worker = board.activeFarm().getFreeWorker();
+		
+		// move all of the stuff on this action to the active player's farm
 		board.activeFarm().resources.addAll(resources);
+		for(Element e : resources) {
+			e.touch();
+		}
 		resources.clear();
+		
+		// then move the active player's worker onto this farm
+		board.activeFarm().resources.remove(worker);
+		this.resources.add(worker);
+		worker.touch();
 	}
 
 }

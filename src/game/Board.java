@@ -29,7 +29,7 @@ abstract public class Board {
 	 * @param string Command
 	 * @return Command object
 	 */
-	public abstract Command getCommand(String string);
+	public abstract Command getCommand(String string) throws GameError;
 	
 	/**
 	 * Do various things before displaying that we normally don't want

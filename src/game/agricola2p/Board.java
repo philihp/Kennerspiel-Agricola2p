@@ -38,8 +38,24 @@ public class Board extends game.Board {
 		move++;
 	}
 
-	public Command getCommand(String string) {
-		return null;
+	public Command getCommand(String string) throws GameError {
+		if(string.charAt(0) == '#') {
+			return new CommandComment(string);
+		}
+		
+		String[] tokens = string.split("\\s+");
+		if(tokens.length == 0) {
+			throw new GameError("No command submitted");
+		}
+		else {
+			String command = tokens[0];
+			String[] params = Arrays.copyOfRange(tokens, 1, tokens.length);
+			System.out.println("COMMAND: "+command);
+			for(int i=0; i < params.length; i++) {
+				System.out.println("PARAMS["+i+"]: "+params[i]);
+			}
+			return null;
+		}
 	}
 
 }
