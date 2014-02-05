@@ -11,7 +11,8 @@ public class ActionStartPlayerAnd1Wood extends Action {
 	public ActionStartPlayerAnd1Wood(Board board, StartingPlayerToken startingPlayerToken) {
 		super("SP1W", board);
 		this.startingPlayerToken = startingPlayerToken;
-		board.farmBoards.get(RED).resources.add(startingPlayerToken);
+		board.farmBoards.get(Globals.STARTING_PLAYER).resources.add(startingPlayerToken);
+		startingPlayerToken.owner = Globals.STARTING_PLAYER;
 	}
 
 	@Override

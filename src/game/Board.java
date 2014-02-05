@@ -2,6 +2,9 @@ package game;
 
 import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 abstract public class Board {
 	
 	private List<Command> history = new ArrayList<Command>();
@@ -42,6 +45,17 @@ abstract public class Board {
 	 */
 	public void preDisplay() {
 		
+	}
+	
+	public String toString() {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			return mapper.writeValueAsString(this);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }
