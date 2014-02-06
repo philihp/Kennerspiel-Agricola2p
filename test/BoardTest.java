@@ -21,14 +21,16 @@ public class BoardTest {
 
 	@Test
 	public void test() throws GameError {
-		assertEquals(board.getMove(), 0);
 		board.runCommand(board.getCommand("ACTION 2S"));
-		assertEquals(board.getMove(), 1);
+		board.runCommand(board.getCommand("COMMIT"));
 		board.runCommand(board.getCommand("ACTION SP1W"));
-		assertEquals(board.getMove(), 2);
-		board.runCommand(board.getCommand("ACTION 3W"));
-		assertEquals(board.getMove(), 3);
+		board.runCommand(board.getCommand("COMMIT"));
+		//board.runCommand(board.getCommand("ACTION 3W"));
+		//board.runCommand(board.getCommand("COMMIT"));
+		//board.runCommand(board.getCommand("ACTION 1S"));
+		//board.runCommand(board.getCommand("COMMIT"));
 
+		System.out.println(board);
 	}
 
 }

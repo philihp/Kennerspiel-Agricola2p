@@ -1,6 +1,10 @@
 package game.agricola2p;
 
-public class Element {
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
+abstract class Element {
 	
 	protected int lastTouched;
 	
@@ -15,6 +19,8 @@ public class Element {
 	public void touch() {
 		this.lastTouched = board.move;
 	}
+	
+	abstract public String getType();
 
 	protected void onRoundStart() {
 	}
@@ -23,6 +29,7 @@ public class Element {
 	}
 	
 	protected void onGameStart() {
+		onRoundStart();
 	}
 	
 	protected void onGameEnd() {

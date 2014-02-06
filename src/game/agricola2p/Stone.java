@@ -6,4 +6,10 @@ public class Stone extends Element {
 		super(board);
 	}
 
+	@Override
+	public String getType() {
+		return "STONE";
+	}
+
+
 }

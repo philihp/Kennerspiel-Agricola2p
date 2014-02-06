@@ -8,5 +8,11 @@ public class Worker extends Element {
 		super(board);
 		this.color = color;
 	}
+	
+	@Override
+	public String getType() {
+		return "WORKER";
+	}
+
 
 }

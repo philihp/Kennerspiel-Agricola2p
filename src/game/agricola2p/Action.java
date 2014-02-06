@@ -3,15 +3,17 @@ package game.agricola2p;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import game.GameError;
 
+@JsonInclude(Include.NON_NULL)
 abstract class Action extends Element {
 	
 	protected String id;
 	
 	List<Element> resources;
-	
-	public Worker occupant = null;
 	
 	public Action(String id, Board board) {
 		super(board);
@@ -20,7 +22,7 @@ abstract class Action extends Element {
 	}
 	
 	protected void onTake() throws GameError {
-		Worker worker = board.activeFarm().getFreeWorker();
+		Worker occupant = board.activeFarm().getFreeWorker();
 		
 		// move all of the stuff on this action to the active player's farm
 		board.activeFarm().resources.addAll(resources);
@@ -30,9 +32,35 @@ abstract class Action extends Element {
 		resources.clear();
 		
 		// then move the active player's worker onto this farm
-		board.activeFarm().resources.remove(worker);
-		this.resources.add(worker);
-		worker.touch();
+		board.activeFarm().resources.remove(occupant);
+		this.resources.add(occupant);
+		occupant.touch();
+	}
+	
+	@Override
+	protected void onRoundStart() {
+		super.onRoundStart();
+	}
+
+	@Override
+	protected void onRoundEnd() {
+		super.onRoundEnd();
+		for(Element e : resources) {
+			if(e instanceof Worker) {
+				Worker w = (Worker)e;
+				resources.remove(w);
+				board.farmBoards.get(w.color).resources.add(w);
+			}
+		}
+	}
+
+	public List<Element> getResources() {
+		return resources;
+	}
+
+	@Override
+	public String getType() {
+		return "ACTION";
 	}
 
 }

@@ -5,9 +5,12 @@ import game.GameError;
 import static game.agricola2p.PlayerColor.*;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Board extends game.Board {
 
 	protected int move;
+	protected int round;
 	protected List<Element> allElements;
 
 	protected GameBoard gameBoard;
@@ -17,6 +20,7 @@ public class Board extends game.Board {
 
 	public Board() {
 		this.move = 0;
+		this.round = 0;
 		allElements = new ArrayList<Element>();
 
 		currentPlayer = RED;
@@ -28,42 +32,54 @@ public class Board extends game.Board {
 		// the Actions, and ActionStartingPlayer1Wood tries to give
 		// the StartingPlayerToken to one of the FarmBoards.
 		gameBoard = new GameBoard(this);
+
+		gameBoard.onGameStart();
+		for (FarmBoard farmBoard : farmBoards.values()) {
+			farmBoard.onGameStart();
+		}
+
 	}
 
 	protected FarmBoard activeFarm() {
 		return farmBoards.get(currentPlayer);
 	}
 
-	public void runCommand(Command command) throws GameError {
-		super.runCommand(command);
-		move++;
-	}
-
 	public Command getCommand(String string) throws GameError {
-		if(string.charAt(0) == '#') {
+		if (string.charAt(0) == '#') {
 			return new CommandComment(string);
 		}
-		
+
 		String[] tokens = string.split("\\s+");
-		if(tokens.length == 0) {
+		if (tokens.length == 0) {
 			throw new GameError("No command submitted");
-		}
-		else {
+		} else {
 			String command = tokens[0];
 			String[] params = Arrays.copyOfRange(tokens, 1, tokens.length);
-			switch(command) {
+			switch (command) {
 			case "ACTION":
-				return new CommandAction(this, params); 
+				return new CommandAction(this, params);
+			case "COMMIT":
+				return new CommandCommit(this);
 			default:
-				return null;
+				throw new RuntimeException("Unknown Command \"" + command
+						+ "\"");
 			}
 		}
 	}
-	
+
+	public int getRound() {
+		return round;
+	}
+
 	public int getMove() {
 		return move;
 	}
+
 	public EnumMap<PlayerColor, FarmBoard> getFarmBoards() {
 		return farmBoards;
+	}
+
+	public GameBoard getGameBoard() {
+		return gameBoard;
 	}
 }

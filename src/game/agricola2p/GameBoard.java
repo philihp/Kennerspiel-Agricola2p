@@ -28,6 +28,27 @@ public class GameBoard extends Element {
 	@Override
 	protected void onRoundStart() {
 		board.currentPlayer = this.startingPlayerToken.owner;
+		super.onRoundStart();
+		for(Action e : actions.values()) {
+			e.onRoundStart();
+		}
 	}
 	
+	@Override
+	protected void onRoundEnd() {
+		super.onRoundEnd();
+		for(Action e : actions.values()) {
+			e.onRoundEnd();
+		}
+	}
+	
+	public Map<String, Action> getActions() {
+		return actions;
+	}
+
+	@Override
+	public String getType() {
+		return "BOARD";
+	}
+
 }
