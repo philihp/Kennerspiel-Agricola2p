@@ -2,6 +2,7 @@ package game.agricola2p;
 
 import game.Command;
 import game.GameError;
+import static game.agricola2p.PlayerColor.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -38,18 +39,20 @@ public class CommandCommit implements Command {
 
 	@Override
 	public void execute() throws GameError {
-		board.move++;
+
 		pickNextPlayer(board);
-		
-		if(board.activeFarm().hasWorker() == false) {
+
+		if (board.activeFarm().hasWorker() == false) {
 			board.gameBoard.onRoundEnd();
-			board.farmBoards.get("RED").onRoundEnd();
-			board.farmBoards.get("BLUE").onRoundEnd();
+			board.farmBoards.get(RED).onRoundEnd();
+			board.farmBoards.get(BLUE).onRoundEnd();
 			board.round++;
 			board.gameBoard.onRoundStart();
-			board.farmBoards.get("RED").onRoundStart();
-			board.farmBoards.get("BLUE").onRoundStart();
+			board.farmBoards.get(RED).onRoundStart();
+			board.farmBoards.get(BLUE).onRoundStart();
 		}
+		board.move++;
+
 	}
 
 }

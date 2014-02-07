@@ -19,8 +19,8 @@ public class Board extends game.Board {
 	protected PlayerColor currentPlayer;
 
 	public Board() {
-		this.move = 0;
-		this.round = 0;
+		this.move = 1;
+		this.round = 1;
 		allElements = new ArrayList<Element>();
 
 		currentPlayer = RED;
@@ -73,6 +73,10 @@ public class Board extends game.Board {
 
 	public int getMove() {
 		return move;
+	}
+	
+	public PlayerColor getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	public EnumMap<PlayerColor, FarmBoard> getFarmBoards() {

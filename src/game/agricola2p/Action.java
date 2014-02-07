@@ -45,13 +45,19 @@ abstract class Action extends Element {
 	@Override
 	protected void onRoundEnd() {
 		super.onRoundEnd();
+		
+		List<Worker> workers = new ArrayList<Worker>(1);
 		for(Element e : resources) {
 			if(e instanceof Worker) {
-				Worker w = (Worker)e;
-				resources.remove(w);
-				board.farmBoards.get(w.color).resources.add(w);
+				workers.add((Worker)e);
 			}
 		}
+		
+		for(Worker w : workers) {
+			resources.remove(w);
+			board.farmBoards.get(w.color).resources.add(w);
+		}
+		
 	}
 
 	public List<Element> getResources() {

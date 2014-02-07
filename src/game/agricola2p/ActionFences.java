@@ -9,6 +9,5 @@ public class ActionFences extends Action {
 		super("FENCE", board);
 	}
 	
-	//TODO
 
 }
