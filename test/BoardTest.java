@@ -21,22 +21,19 @@ public class BoardTest {
 
 	@Test
 	public void test() throws GameError {
-		board.runCommand(board.getCommand("ACTION RSW"));
+		board.runCommand(board.getCommand("ACTION 2S"));
 		board.runCommand(board.getCommand("COMMIT"));
 		board.runCommand(board.getCommand("ACTION SP1W"));
 		board.runCommand(board.getCommand("COMMIT"));
-		board.runCommand(board.getCommand("ACTION 3W"));
-		board.runCommand(board.getCommand("COMMIT"));
-		board.runCommand(board.getCommand("ACTION 1S"));
-		board.runCommand(board.getCommand("COMMIT"));
-		board.runCommand(board.getCommand("ACTION COWS"));
-		board.runCommand(board.getCommand("COMMIT"));
-		board.runCommand(board.getCommand("ACTION 2S"));
+		board.runCommand(board.getCommand("ACTION WALL"));
+		board.runCommand(board.getCommand("WALL 0 11"));
+		board.runCommand(board.getCommand("WALL 1 10"));
+		board.runCommand(board.getCommand("WALL 3 10"));
 		board.runCommand(board.getCommand("COMMIT"));
 		
 		
-		board.runCommand(board.getCommand("ACTION RSW"));
-		board.runCommand(board.getCommand("COMMIT"));
+		//board.runCommand(board.getCommand("ACTION RSW"));
+		//board.runCommand(board.getCommand("COMMIT"));
 
 		System.out.println(board);
 	}

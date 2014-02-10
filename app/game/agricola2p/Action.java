@@ -13,7 +13,7 @@ abstract class Action extends Element {
 	
 	protected String id;
 	
-	List<Element> resources;
+	protected List<Element> resources;
 	
 	public Action(String id, Board board) {
 		super(board);
@@ -35,6 +35,13 @@ abstract class Action extends Element {
 		board.activeFarm().resources.remove(occupant);
 		this.resources.add(occupant);
 		occupant.touch();
+	}
+	
+	protected boolean isUsable() {
+		for(Element e : resources) {
+			if(e instanceof Worker) return false;
+		}
+		return true;
 	}
 	
 	@Override

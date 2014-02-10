@@ -17,6 +17,8 @@ public class Board extends game.Board {
 	protected EnumMap<PlayerColor, FarmBoard> farmBoards;
 
 	protected PlayerColor currentPlayer;
+	
+	protected List<Task> tasks = new ArrayList<Task>();
 
 	public Board() {
 		this.move = 1;
@@ -60,6 +62,8 @@ public class Board extends game.Board {
 				return new CommandAction(this, params);
 			case "COMMIT":
 				return new CommandCommit(this);
+			case "FENCE":
+				return new CommandFence(this, params);
 			default:
 				throw new RuntimeException("Unknown Command \"" + command
 						+ "\"");
@@ -81,6 +85,10 @@ public class Board extends game.Board {
 
 	public EnumMap<PlayerColor, FarmBoard> getFarmBoards() {
 		return farmBoards;
+	}
+	
+	public List<Task> getTasks() {
+		return tasks;
 	}
 
 	public GameBoard getGameBoard() {

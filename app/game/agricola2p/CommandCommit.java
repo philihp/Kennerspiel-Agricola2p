@@ -39,6 +39,8 @@ public class CommandCommit implements Command {
 
 	@Override
 	public void execute() throws GameError {
+		
+		board.tasks.clear();
 
 		pickNextPlayer(board);
 
@@ -53,6 +55,7 @@ public class CommandCommit implements Command {
 		}
 		board.move++;
 
+		board.tasks.add(new TaskAction(board));
 	}
 
 }
