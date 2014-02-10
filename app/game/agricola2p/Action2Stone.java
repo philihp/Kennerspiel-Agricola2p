@@ -13,6 +13,7 @@ public class Action2Stone extends Action {
 	protected void onRoundStart() {
 		super.onRoundStart();
 		resources.add(new Stone(board));
+		resources.add(new Stone(board));
 	}
 
 }
