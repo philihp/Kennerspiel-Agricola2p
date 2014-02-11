@@ -9,13 +9,20 @@ public class GameBoard extends Element {
 	protected Map<String, Action> actions;
 	private StartingPlayerToken startingPlayerToken;
 	
+	public List<Element> resources = new ArrayList<Element>(4);
+	
 	private static void addAction(Map<String, Action> map, Action action) {
 		map.put(action.id, action);
 	}
-	
 
 	public GameBoard(Board board) {
 		super(board);
+
+		resources.add(new Expansion(board));
+		resources.add(new Expansion(board));
+		resources.add(new Expansion(board));
+		resources.add(new Expansion(board));
+		
 		this.actions = new HashMap<String, Action>();
 		this.startingPlayerToken = new StartingPlayerToken(board);
 		addAction(actions, new ActionStartPlayerAnd1Wood(board, this.startingPlayerToken));
@@ -25,12 +32,21 @@ public class GameBoard extends Element {
 		addAction(actions, new ActionFences(board));
 		addAction(actions, new ActionWalls(board));
 		addAction(actions, new ActionBuildingMaterials(board));
+		addAction(actions, new ActionExpand(board));
 		addAction(actions, new ActionMillpond(board));
 		addAction(actions, new ActionPigsAndSheep(board));
 		addAction(actions, new ActionCowsAndPigs(board));
 		addAction(actions, new ActionHorsesAndSheep(board));
 		
 		addActionTask();
+	}
+	
+	protected Expansion findExpansion() {
+		for(Element e : resources) {
+			if(e instanceof Expansion)
+				return (Expansion)e;
+		}
+		return null;
 	}
 	
 	protected void addActionTask() {

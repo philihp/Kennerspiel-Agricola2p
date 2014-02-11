@@ -66,6 +66,8 @@ public class Board extends game.Board {
 				return new CommandFence(this, params);
 			case "WALL":
 				return new CommandWall(this, params);
+			case "EXPAND":
+				return new CommandExpand(this, params);
 			default:
 				throw new RuntimeException("Unknown Command \"" + command
 						+ "\"");

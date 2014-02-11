@@ -110,6 +110,25 @@ public class FarmBoard extends Element {
 		return ContiguousSet.create(Range.closed(colRangeMin, colRangeMax), 
 				DiscreteDomain.integers());
 	}
+	
+	private Lot makeLot(int row, int col) {
+		if(row % 2 == 0) {
+			if(col % 2 == 0) {
+				return new LotIntersection(board);
+			}
+			else {
+				return new LotHorizontalFence(board);
+			}
+		}
+		else {
+			if(col % 2 == 0) {
+				return new LotVerticalFence(board);
+			}
+			else {
+				return new LotPasture(board);
+			}
+		}
+	}
 
 	protected ArrayTable<Integer, Integer, Lot> createTerrainTable() {
 		ArrayTable<Integer, Integer, Lot> terrain = ArrayTable.create(getRowRange(),getColRange());
@@ -117,28 +136,25 @@ public class FarmBoard extends Element {
 		for(Cell<Integer, Integer, Lot> cell : terrain.cellSet()) {
 			int row = cell.getRowKey();
 			int col = cell.getColumnKey();
-			Lot lot = null;
-			if(row % 2 == 0) {
-				if(col % 2 == 0) {
-					lot = new LotIntersection(board);
-				}
-				else {
-					lot = new LotHorizontalFence(board);
-				}
-			}
-			else {
-				if(col % 2 == 0) {
-					lot = new LotVerticalFence(board);
-				}
-				else {
-					lot = new LotPasture(board);
-				}
-			}
-			terrain.put(cell.getRowKey(), cell.getColumnKey(), lot);
+			terrain.put(row, col, makeLot(row, col));
 		}
 		((LotPasture)terrain.get(5, 11)).building = new Cottage(board); 
 		
 		return terrain;
+	}
+	
+	protected void resizeTerrainTable() {
+		ArrayTable<Integer, Integer, Lot> newTerrain = createTerrainTable();
+		newTerrain.putAll(this.terrain);
+		this.terrain = newTerrain;
+		
+		for(Integer row : getRowRange()) {
+			for(Integer col : getColRange()) {
+				Lot lot = terrain.get(row, col);
+				if(lot != null) continue;
+				terrain.put(row, col, lot);
+			}
+		}
 	}
 	
 	public Lot[][] getTerrain() {

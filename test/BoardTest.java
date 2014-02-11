@@ -30,6 +30,9 @@ public class BoardTest {
 		board.runCommand(board.getCommand("WALL 1 10"));
 		board.runCommand(board.getCommand("WALL 3 10"));
 		board.runCommand(board.getCommand("COMMIT"));
+		board.runCommand(board.getCommand("ACTION EXPAND"));
+		board.runCommand(board.getCommand("EXPAND LEFT"));
+		board.runCommand(board.getCommand("COMMIT"));
 		
 		
 		//board.runCommand(board.getCommand("ACTION RSW"));
