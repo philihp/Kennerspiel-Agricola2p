@@ -18,7 +18,7 @@ public class Board extends game.Board {
 
 	protected PlayerColor currentPlayer;
 	
-	protected List<Task> tasks = new ArrayList<Task>();
+	protected Map<String, Task> tasks = new TreeMap<String,Task>();
 
 	public Board() {
 		this.move = 1;
@@ -64,6 +64,8 @@ public class Board extends game.Board {
 				return new CommandCommit(this);
 			case "FENCE":
 				return new CommandFence(this, params);
+			case "WALL":
+				return new CommandWall(this, params);
 			default:
 				throw new RuntimeException("Unknown Command \"" + command
 						+ "\"");
@@ -87,7 +89,7 @@ public class Board extends game.Board {
 		return farmBoards;
 	}
 	
-	public List<Task> getTasks() {
+	public Map<String, Task> getTasks() {
 		return tasks;
 	}
 

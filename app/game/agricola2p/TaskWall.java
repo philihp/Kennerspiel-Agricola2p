@@ -6,15 +6,22 @@ import java.util.List;
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table.Cell;
 
-public class TaskFence extends Task {
+public class TaskWall extends Task {
 	
-	public TaskFence(Board board) {
+	protected int timesUsed;
+	
+	public TaskWall(Board board) {
 		super(board);
+		timesUsed = 0;
 	}
 	
 	public boolean isUsable() {
+		if(timesUsed < 2) return true;
+		
+		int stone = 0;
 		for(Element e : board.activeFarm().resources) {
-			if(e instanceof Wood) return true;
+			if(e instanceof Stone) stone++;
+			if(stone >= 2) return true;
 		}
 		return false;
 	}

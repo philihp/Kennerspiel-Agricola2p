@@ -55,7 +55,7 @@ public class CommandCommit implements Command {
 		}
 		board.move++;
 
-		board.tasks.add(new TaskAction(board));
+		board.gameBoard.addActionTask();
 	}
 
 }

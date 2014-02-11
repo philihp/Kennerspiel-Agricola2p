@@ -15,10 +15,6 @@ public class TaskAction extends Task {
 		usable = true;
 	}
 	
-	public String getCommand() {
-		return "ACTION";
-	}
-	
 	public boolean isUsable() {
 		return usable;
 	}

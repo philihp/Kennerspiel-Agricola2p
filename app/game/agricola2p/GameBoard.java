@@ -23,11 +23,18 @@ public class GameBoard extends Element {
 		addAction(actions, new Action1Stone(board));
 		addAction(actions, new Action2Stone(board));
 		addAction(actions, new ActionFences(board));
+		addAction(actions, new ActionWalls(board));
 		addAction(actions, new ActionBuildingMaterials(board));
 		addAction(actions, new ActionMillpond(board));
 		addAction(actions, new ActionPigsAndSheep(board));
 		addAction(actions, new ActionCowsAndPigs(board));
 		addAction(actions, new ActionHorsesAndSheep(board));
+		
+		addActionTask();
+	}
+	
+	protected void addActionTask() {
+		board.tasks.put("ACTION", new TaskAction(board));
 	}
 
 	@Override

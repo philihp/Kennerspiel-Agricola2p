@@ -28,12 +28,7 @@ public class CommandAction implements Command {
 			a.onTake();
 		}
 	
-		for(Task task : board.tasks) {
-			if(task instanceof TaskAction) {
-				((TaskAction)task).usable = false;
-			}
-		}
-		
+		((TaskAction)board.tasks.get("ACTION")).usable = false;
 	}
 
 }

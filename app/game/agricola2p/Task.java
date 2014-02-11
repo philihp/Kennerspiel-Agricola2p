@@ -10,8 +10,6 @@ abstract class Task {
 		this.board = board;
 	}
 	
-	public abstract String getCommand();
-	
 	public abstract List<String> getPossibleParameters();
 	
 	public abstract boolean isUsable();
