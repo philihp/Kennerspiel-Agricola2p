@@ -20,7 +20,12 @@ public class ActionExpand extends Action {
 	@Override
 	protected void onTake() throws GameError {
 		super.onTake();
-		board.tasks.put(COMMAND, new TaskExpand(board));
+		TaskExpand task = new TaskExpand(board);
+		board.tasks.put(COMMAND, task);
+		
+		if(board.gameBoard.findExpansion() == null) {
+			task.usable = false;
+		}
 	}
 	
 }

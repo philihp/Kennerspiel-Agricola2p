@@ -18,8 +18,9 @@ public class CommandExpand implements Command {
 
 	@Override
 	public void execute() throws GameError {
-		Expansion expansion = board.gameBoard.findExpansion();
+		((TaskExpand)board.tasks.get("EXPAND")).usable = false;
 		
+		Expansion expansion = board.gameBoard.findExpansion();
 		if(expansion == null)
 			//there are no more expansions
 			return;
@@ -38,7 +39,6 @@ public class CommandExpand implements Command {
 		default:
 			throw new GameError("EXPAND requires either LEFT or RIGHT if there are expansions left to place");
 		}
-		
 		board.activeFarm().resizeTerrainTable();
 		board.activeFarm().resources.add(expansion);
 	}

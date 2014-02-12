@@ -18,8 +18,8 @@ public class CommandAction implements Command {
 
 	@Override
 	public void execute() throws GameError {
-		if(params.length < 1)
-			throw new GameError("ACTION needs a parameter after it");
+		if(params.length != 1)
+			throw new GameError("ACTION needs exactly 1 parameter");
 		
 		Action a = board.gameBoard.actions.get(params[0]);
 		if(a == null)
