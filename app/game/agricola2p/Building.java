@@ -9,8 +9,8 @@ abstract class Building extends Element {
 		super(board);
 	}
 	
-	abstract int getValue();
+	public abstract int getValue();
 
-	abstract boolean canBuild();
+	public abstract boolean canBuild();
 
 }

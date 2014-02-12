@@ -51,6 +51,7 @@ public class Board extends game.Board {
 			return new CommandComment(string);
 		}
 
+		// TODO refactor this
 		String[] tokens = string.split("\\s+");
 		if (tokens.length == 0) {
 			throw new GameError("No command submitted");
@@ -68,6 +69,8 @@ public class Board extends game.Board {
 				return new CommandWall(this, params);
 			case "EXPAND":
 				return new CommandExpand(this, params);
+			case "STALL":
+				return new CommandStall(this, params);
 			default:
 				throw new RuntimeException("Unknown Command \"" + command
 						+ "\"");

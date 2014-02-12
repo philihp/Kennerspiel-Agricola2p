@@ -22,6 +22,10 @@ public class GameBoard extends Element {
 		resources.add(new Expansion(board));
 		resources.add(new Expansion(board));
 		resources.add(new Expansion(board));
+		resources.add(new Stall(board));
+		resources.add(new Stall(board));
+		resources.add(new Stall(board));
+		resources.add(new Stall(board));
 		
 		this.actions = new HashMap<String, Action>();
 		this.startingPlayerToken = new StartingPlayerToken(board);
@@ -33,8 +37,12 @@ public class GameBoard extends Element {
 		addAction(actions, new ActionWalls(board));
 		addAction(actions, new ActionBuildingMaterials(board));
 		addAction(actions, new ActionExpand(board));
+		addAction(actions, new ActionStall(board));
+		//
 		addAction(actions, new ActionMillpond(board));
 		addAction(actions, new ActionPigsAndSheep(board));
+		//
+		//
 		addAction(actions, new ActionCowsAndPigs(board));
 		addAction(actions, new ActionHorsesAndSheep(board));
 		
@@ -45,6 +53,14 @@ public class GameBoard extends Element {
 		for(Element e : resources) {
 			if(e instanceof Expansion)
 				return (Expansion)e;
+		}
+		return null;
+	}
+	
+	protected Stall findStall() {
+		for(Element e : resources) {
+			if(e instanceof Stall)
+				return (Stall)e;
 		}
 		return null;
 	}

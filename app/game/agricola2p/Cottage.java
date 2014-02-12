@@ -7,7 +7,7 @@ public class Cottage extends Building {
 	}
 
 	@Override
-	int getValue() {
+	public int getValue() {
 		return 0;
 	}
 

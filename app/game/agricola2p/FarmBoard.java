@@ -67,6 +67,14 @@ public class FarmBoard extends Element {
 		}
 		return null;
 	}
+	
+	protected Reed findReed() {
+		for(Element e : resources) {
+			if(e instanceof Reed) 
+				return (Reed)e;
+		}
+		return null;
+	}
 
 	protected boolean hasWorker() {
 		for (Worker w : workers) {
