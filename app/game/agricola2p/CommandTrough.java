@@ -30,7 +30,7 @@ public class CommandTrough implements Command {
 		int col = Integer.parseInt(params[1]);
 		FarmBoard farm = board.activeFarm();
 		LotPasture lot = (LotPasture)farm.terrain.get(row, col);
-		Trough trough = farm.find(Trough.class);
+		Trough trough = board.gameBoard.find(Trough.class);
 		
 		TaskTrough task = (TaskTrough)board.tasks.get("TROUGH");
 		List<Element> cost = new ArrayList<Element>(3);
