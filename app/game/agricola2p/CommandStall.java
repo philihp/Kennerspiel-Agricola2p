@@ -56,8 +56,8 @@ public class CommandStall implements Command {
 		else if(stall == null) {
 			throw new GameError("No unbuilt stalls available.");
 		}
-		else if(stone1 == null || stone2 == null) {
-			throw new GameError("Need 2 stone to build wall.");
+		else if(stone1 == null || stone2 == null || stone3 == null || reed == null) {
+			throw new GameError("Need 3 stone and 1 reed to build stall.");
 		}
 		else {
 			((LotPasture)lot).building = stall;
