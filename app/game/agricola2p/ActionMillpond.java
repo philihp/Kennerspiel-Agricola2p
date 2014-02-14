@@ -3,7 +3,7 @@ package game.agricola2p;
 import game.GameError;
 import java.util.*;
 
-public class ActionMillpond extends Action {
+public class ActionMillpond extends Action implements CommittableAfterTaken {
 	
 	private boolean isEmpty = true;
 

@@ -12,15 +12,22 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class BoardTest {
 
-	public static Board board;
+	public Board board;
 
-	@BeforeClass
-	public static void setUpClass() {
+	@Before
+	public void setUp() {
 		board = new Board();
+	}
+	
+	@Test
+	public void testBase() throws GameError {
+		board.runCommand(board.getCommand("ACTION RSW"));
+		board.runCommand(board.getCommand("COMMIT"));
+		System.out.println(board);
 	}
 
 	@Test
-	public void test() throws GameError {
+	public void testNormalGame() throws GameError {
 		board.runCommand(board.getCommand("ACTION RSW"));
 		board.runCommand(board.getCommand("COMMIT"));
 		board.runCommand(board.getCommand("ACTION WALL"));
@@ -37,14 +44,20 @@ public class BoardTest {
 		board.runCommand(board.getCommand("COMMIT"));
 		board.runCommand(board.getCommand("ACTION 3W"));
 		board.runCommand(board.getCommand("COMMIT"));
-		
-		
-		
+
+		board.runCommand(board.getCommand("ACTION 3W"));
+		board.runCommand(board.getCommand("COMMIT"));
+		board.runCommand(board.getCommand("ACTION RSW"));
+		board.runCommand(board.getCommand("COMMIT"));
+		board.runCommand(board.getCommand("ACTION TROUGH"));
+		board.runCommand(board.getCommand("TROUGH 5 11"));
+		board.runCommand(board.getCommand("TROUGH 3 11"));
+		board.runCommand(board.getCommand("COMMIT"));
+		board.runCommand(board.getCommand("ACTION 2S"));
+		board.runCommand(board.getCommand("COMMIT"));
 		
 		//board.runCommand(board.getCommand("ACTION RSW"));
 		//board.runCommand(board.getCommand("COMMIT"));
-
-		System.out.println(board);
 	}
 
 }

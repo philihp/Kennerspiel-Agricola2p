@@ -10,6 +10,11 @@ public class ActionFences extends Action {
 	public ActionFences(Board board) {
 		super(COMMAND, board);
 	}
+	
+	@Override
+	protected boolean isUsable() {
+		return super.isUsable() && board.activeFarm().find(Wood.class) != null;
+	}
 
 	@Override
 	protected void onTake() throws GameError {

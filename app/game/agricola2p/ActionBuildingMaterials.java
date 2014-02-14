@@ -3,7 +3,7 @@ package game.agricola2p;
 import game.GameError;
 import java.util.*;
 
-public class ActionBuildingMaterials extends Action {
+public class ActionBuildingMaterials extends Action implements CommittableAfterTaken {
 
 	public ActionBuildingMaterials(Board board) {
 		super("RSW", board);

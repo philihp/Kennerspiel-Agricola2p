@@ -81,6 +81,10 @@ public class Board extends game.Board {
 			}
 		}
 	}
+	
+	protected void resetTasks() {
+		gameBoard.resetTasks();
+	}
 
 	public int getRound() {
 		return round;

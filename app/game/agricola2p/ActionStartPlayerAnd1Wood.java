@@ -4,7 +4,7 @@ import static game.agricola2p.PlayerColor.RED;
 import game.GameError;
 import java.util.*;
 
-public class ActionStartPlayerAnd1Wood extends Action {
+public class ActionStartPlayerAnd1Wood extends Action implements CommittableAfterTaken {
 	
 	private StartingPlayerToken startingPlayerToken; 
 

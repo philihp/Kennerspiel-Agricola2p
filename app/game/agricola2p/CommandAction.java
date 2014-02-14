@@ -24,11 +24,16 @@ public class CommandAction implements Command {
 		Action a = board.gameBoard.actions.get(params[0]);
 		if(a == null)
 			throw new GameError("Unable to find action \""+params[0]+"\"");
+		else if(a.isUsable() == false) {
+			throw new GameError("ACTION "+a.id+" is not usable");
+		}
 		else {
 			a.onTake();
 		}
 	
 		((TaskAction)board.tasks.get("ACTION")).usable = false;
+		((TaskCommit)board.tasks.get("COMMIT")).usable = true;
+		
 	}
 
 }

@@ -35,6 +35,10 @@ abstract class Action extends Element {
 		board.activeFarm().resources.remove(occupant);
 		this.resources.add(occupant);
 		occupant.touch();
+		
+		if(this instanceof CommittableAfterTaken) {
+			((TaskCommit)board.tasks.get("COMMIT")).usable = true;
+		}
 	}
 	
 	protected boolean isUsable() {

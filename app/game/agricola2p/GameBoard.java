@@ -9,6 +9,8 @@ public class GameBoard extends Container {
 	protected Map<String, Action> actions;
 	private StartingPlayerToken startingPlayerToken;
 	
+	private TaskCommit commitTask = new TaskCommit(board);
+	
 	private void addAction(Action action) {
 		actions.put(action.id, action);
 	}
@@ -55,15 +57,18 @@ public class GameBoard extends Container {
 		addAction(new ActionMillpond(board));
 		addAction(new ActionPigsAndSheep(board));
 		addAction(new ActionStable(board));
-		actions.put("BUILD1",new ActionSpecialBuilding(board));
-		actions.put("BUILD2",new ActionSpecialBuilding(board));
+		addAction(new ActionSpecialBuilding("BUILD1", board));
+		addAction(new ActionSpecialBuilding("BUILD2", board));
 		addAction(new ActionCowsAndPigs(board));
 		addAction(new ActionHorsesAndSheep(board));
 		
-		addActionTask();
+		resetTasks();
 	}
 	
-	protected void addActionTask() {
+	protected void resetTasks() {
+		board.tasks.clear();
+		board.tasks.put("COMMIT", commitTask);
+		commitTask.usable = false;
 		board.tasks.put("ACTION", new TaskAction(board));
 	}
 

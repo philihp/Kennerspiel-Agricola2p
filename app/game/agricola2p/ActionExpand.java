@@ -3,7 +3,7 @@ package game.agricola2p;
 import game.GameError;
 import java.util.*;
 
-public class ActionExpand extends Action {
+public class ActionExpand extends Action implements CommittableAfterTaken {
 	
 	public static final String COMMAND = "EXPAND";
 	
