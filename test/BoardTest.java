@@ -35,6 +35,9 @@ public class BoardTest {
 		board.runCommand(board.getCommand("ACTION STALL"));
 		board.runCommand(board.getCommand("STALL 1 11"));
 		board.runCommand(board.getCommand("COMMIT"));
+		board.runCommand(board.getCommand("ACTION 3W"));
+		board.runCommand(board.getCommand("COMMIT"));
+		
 		
 		
 		

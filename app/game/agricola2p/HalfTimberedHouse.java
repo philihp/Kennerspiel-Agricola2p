@@ -13,13 +13,9 @@ public class HalfTimberedHouse extends Building {
 
 	@Override
 	public String getType() {
-		return "HOUSE";
+		return "HALF_TIMBERED_HOUSE";
 	}
 	
-	@Override
-	public boolean canBuild() {
-		return false;
-	}
 	
 	@Override
 	public int contains() {
@@ -27,8 +23,13 @@ public class HalfTimberedHouse extends Building {
 	}
 
 	@Override
-	public boolean canBuild(LotPasture pasture) {
+	public boolean canBuildAt(LotPasture pasture) {
 		return pasture.building != null && pasture.building instanceof Cottage;
+	}
+
+	@Override
+	public boolean canBuild() {
+		return canBuildWith(3, 2, 1);
 	}
 
 }

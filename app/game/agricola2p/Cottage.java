@@ -26,4 +26,9 @@ public class Cottage extends Building {
 		return 1;
 	}
 
+	@Override
+	public boolean canBuildAt(LotPasture pasture) {
+		return false;
+	}
+
 }

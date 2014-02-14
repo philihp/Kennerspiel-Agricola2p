@@ -19,22 +19,24 @@ public class Stall extends Building {
 		return isStable?"STABLE":"STALL";
 	}
 	
+	/**
+	 * This is false so the BUILD action doesn't think it can build
+	 * it. It's only buildable by the STALL action, which doesn't
+	 * give a shit.
+	 */
 	@Override
 	public boolean canBuild() {
-		int reed = 1;
-		int stone = 3;
-		
-		for(Element e : board.activeFarm().resources) {
-			if(e instanceof Stone) stone--;
-			else if(e instanceof Reed) reed--;
-		}
-		
-		return (reed <= 0 && stone <= 0);
+		return false;
 	}
 
 	@Override
 	public int contains() {
-		return 3;
+		return isStable?5:3;
+	}
+
+	@Override
+	public boolean canBuildAt(LotPasture pasture) {
+		return pasture.building == null;
 	}
 
 }

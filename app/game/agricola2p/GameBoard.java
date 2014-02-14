@@ -9,8 +9,8 @@ public class GameBoard extends Container {
 	protected Map<String, Action> actions;
 	private StartingPlayerToken startingPlayerToken;
 	
-	private static void addAction(Map<String, Action> map, Action action) {
-		map.put(action.id, action);
+	private void addAction(Action action) {
+		actions.put(action.id, action);
 	}
 
 	public GameBoard(Board board) {
@@ -24,6 +24,11 @@ public class GameBoard extends Container {
 		resources.add(new Stall(board));
 		resources.add(new Stall(board));
 		resources.add(new Stall(board));
+		resources.add(new StorageBuilding(board));
+		resources.add(new OpenStables(board));
+		resources.add(new HalfTimberedHouse(board));
+		resources.add(new Shelter(board));
+		
 		resources.add(new Trough(board));
 		resources.add(new Trough(board));
 		resources.add(new Trough(board));
@@ -37,22 +42,23 @@ public class GameBoard extends Container {
 		
 		this.actions = new HashMap<String, Action>();
 		this.startingPlayerToken = new StartingPlayerToken(board);
-		addAction(actions, new ActionStartPlayerAnd1Wood(board, this.startingPlayerToken));
-		addAction(actions, new Action3Wood(board));
-		addAction(actions, new Action1Stone(board));
-		addAction(actions, new Action2Stone(board));
-		addAction(actions, new ActionFences(board));
-		addAction(actions, new ActionWalls(board));
-		addAction(actions, new ActionBuildingMaterials(board));
-		addAction(actions, new ActionExpand(board));
-		addAction(actions, new ActionStall(board));
-		addAction(actions, new ActionTrough(board));
-		addAction(actions, new ActionMillpond(board));
-		addAction(actions, new ActionPigsAndSheep(board));
-		//
-		//
-		addAction(actions, new ActionCowsAndPigs(board));
-		addAction(actions, new ActionHorsesAndSheep(board));
+		addAction(new ActionStartPlayerAnd1Wood(board, this.startingPlayerToken));
+		addAction(new Action3Wood(board));
+		addAction(new Action1Stone(board));
+		addAction(new Action2Stone(board));
+		addAction(new ActionFences(board));
+		addAction(new ActionWalls(board));
+		addAction(new ActionBuildingMaterials(board));
+		addAction(new ActionExpand(board));
+		addAction(new ActionStall(board));
+		addAction(new ActionTrough(board));
+		addAction(new ActionMillpond(board));
+		addAction(new ActionPigsAndSheep(board));
+		addAction(new ActionStable(board));
+		actions.put("BUILD1",new ActionSpecialBuilding(board));
+		actions.put("BUILD2",new ActionSpecialBuilding(board));
+		addAction(new ActionCowsAndPigs(board));
+		addAction(new ActionHorsesAndSheep(board));
 		
 		addActionTask();
 	}

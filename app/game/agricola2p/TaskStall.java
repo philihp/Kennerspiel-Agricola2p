@@ -7,22 +7,25 @@ import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table.Cell;
 
 public class TaskStall extends Task {
-	
+
 	protected boolean usable;
-	
+
 	public TaskStall(Board board) {
 		super(board);
 		usable = true;
 	}
-	
+
 	public boolean isUsable() {
-		if(usable == false) return false;
+		if (usable == false)
+			return false;
 
 		int reed = 1;
 		int stone = 3;
-		for(Element e : board.activeFarm().resources) {
-			if(e instanceof Stone) stone--;
-			else if(e instanceof Reed) reed--;
+		for (Element e : board.activeFarm().resources) {
+			if (e instanceof Stone)
+				stone--;
+			else if (e instanceof Reed)
+				reed--;
 		}
 		return (reed <= 0 && stone <= 0);
 	}
@@ -30,20 +33,21 @@ public class TaskStall extends Task {
 	@Override
 	public List<String> getPossibleParameters() {
 		List<String> p = new ArrayList<String>();
-
 		ArrayTable<Integer, Integer, Lot> terrain = board.activeFarm().terrain;
-
-		for(Cell<Integer, Integer, Lot> cell : terrain.cellSet()) {
+		Stall stall = board.gameBoard.find(Stall.class);
+		if(stall == null) return p;
+		
+		for (Cell<Integer, Integer, Lot> cell : terrain.cellSet()) {
 			int row = cell.getRowKey();
 			int col = cell.getColumnKey();
-			if(row % 2 == 1 && col % 2 == 1) {
+			if (row % 2 == 1 && col % 2 == 1) {
 				LotPasture lot = (LotPasture)terrain.get(row, col);
-				if(lot.building == null) {
-					p.add(row+" "+col);
+				if(stall.canBuildAt(lot)) {
+					p.add(row + " " + col);
 				}
 			}
 		}
-		
+
 		return p;
 	}
 
