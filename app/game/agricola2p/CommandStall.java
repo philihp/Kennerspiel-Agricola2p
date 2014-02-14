@@ -25,24 +25,26 @@ public class CommandStall implements Command {
 		int col = Integer.parseInt(params[1]);
 		FarmBoard farm = board.activeFarm();
 		Lot lot = farm.terrain.get(row, col);
-		Stall stall = board.gameBoard.findStall();
-		
+		Stall stall = board.gameBoard.find(Stall.class);
 		TaskStall task = (TaskStall)board.tasks.get("STALL");
 		Stone stone1;
 		Stone stone2;
 		Stone stone3;
 		Reed reed;
 		
-		stone1 = farm.findStone();
+		stone1 = farm.find(Stone.class);
 		farm.resources.remove(stone1);
-		stone2 = farm.findStone();
+		stone2 = farm.find(Stone.class);
 		farm.resources.remove(stone2);
-		stone3 = farm.findStone();
-		reed = farm.findReed();
+		stone3 = farm.find(Stone.class);
+		reed = farm.find(Reed.class);
 		farm.resources.add(stone1);
 		farm.resources.add(stone2);
  
-		if(lot == null) {
+		if(!(task != null && task.usable)) {
+			throw new GameError("Unable to use task");
+		}
+		else if(lot == null) {
 			throw new GameError("Lot "+row+", "+col+" does not exist.");
 		}
 		else if((lot instanceof LotPasture) == false) {

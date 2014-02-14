@@ -25,8 +25,8 @@ public class CommandFence implements Command {
 		int col = Integer.parseInt(params[1]);
 		FarmBoard farm = board.activeFarm();
 		LotFence lot = (LotFence)farm.terrain.get(row, col);
-		Fence fence = farm.findFence();
-		Wood wood = farm.findWood();
+		Fence fence = farm.find(Fence.class);
+		Wood wood = farm.find(Wood.class);
  
 		
 		if(lot == null) {

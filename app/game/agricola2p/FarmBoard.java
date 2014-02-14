@@ -9,9 +9,7 @@ import com.google.common.collect.*;
 import com.google.common.collect.Table.Cell;
 
 
-public class FarmBoard extends Element {
-
-	protected List<Element> resources;
+public class FarmBoard extends Container {
 
 	protected final PlayerColor color;
 
@@ -26,9 +24,9 @@ public class FarmBoard extends Element {
 	protected ArrayTable<Integer, Integer, Lot> terrain = createTerrainTable();
 
 	public FarmBoard(Board board, PlayerColor color) {
-		super(board);
+		super(board, 12);
 		this.color = color;
-		this.resources = new ArrayList<Element>();
+		resources.add(new Fence(board));
 		resources.add(new Fence(board));
 		resources.add(new Fence(board));
 		resources.add(new Fence(board));
@@ -42,38 +40,6 @@ public class FarmBoard extends Element {
 		workers.add(new Worker(board, color));
 		workers.add(new Worker(board, color));
 		resources.addAll(workers);
-	}
-	
-	protected Fence findFence() {
-		for(Element e : resources) {
-			if(e instanceof Fence) 
-				return (Fence)e;
-		}
-		return null;
-	}
-	
-	protected Wood findWood() {
-		for(Element e : resources) {
-			if(e instanceof Wood) 
-				return (Wood)e;
-		}
-		return null;
-	}
-	
-	protected Stone findStone() {
-		for(Element e : resources) {
-			if(e instanceof Stone) 
-				return (Stone)e;
-		}
-		return null;
-	}
-	
-	protected Reed findReed() {
-		for(Element e : resources) {
-			if(e instanceof Reed) 
-				return (Reed)e;
-		}
-		return null;
 	}
 
 	protected boolean hasWorker() {

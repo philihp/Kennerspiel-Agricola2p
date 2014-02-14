@@ -17,7 +17,7 @@ public class ActionStall extends Action {
 		TaskStall task = new TaskStall(board);
 		board.tasks.put(COMMAND, task);
 		
-		if(board.gameBoard.findStall() == null) {
+		if(board.gameBoard.find(Stall.class) == null) {
 			task.usable = true;
 		}
 	}

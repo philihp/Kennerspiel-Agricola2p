@@ -32,4 +32,9 @@ public class Stall extends Building {
 		return (reed <= 0 && stone <= 0);
 	}
 
+	@Override
+	public int contains() {
+		return 3;
+	}
+
 }

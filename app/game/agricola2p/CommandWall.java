@@ -25,7 +25,7 @@ public class CommandWall implements Command {
 		int col = Integer.parseInt(params[1]);
 		FarmBoard farm = board.activeFarm();
 		LotFence lot = (LotFence)farm.terrain.get(row, col);
-		Fence fence = farm.findFence();
+		Fence fence = farm.find(Fence.class);
 		
 		TaskWall task = (TaskWall)board.tasks.get("WALL");
 		Stone stone1;
@@ -36,9 +36,9 @@ public class CommandWall implements Command {
 			stone2 = new Stone(board);
 		}
 		else { 
-			stone1 = farm.findStone();
+			stone1 = farm.find(Stone.class);
 			farm.resources.remove(stone1);
-			stone2 = farm.findStone();
+			stone2 = farm.find(Stone.class);
 			farm.resources.add(stone1);
 		}
  

@@ -12,5 +12,11 @@ abstract class Building extends Element {
 	public abstract int getValue();
 
 	public abstract boolean canBuild();
+	
+	public abstract int contains();
+	
+	public boolean canBuild(LotPasture pasture) {
+		return (pasture.building == null);
+	}
 
 }

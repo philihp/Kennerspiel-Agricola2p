@@ -71,6 +71,10 @@ public class Board extends game.Board {
 				return new CommandExpand(this, params);
 			case "STALL":
 				return new CommandStall(this, params);
+			case "STABLE":
+				return new CommandStable(this, params);
+			case "TROUGH":
+				return new CommandTrough(this, params);
 			default:
 				throw new RuntimeException("Unknown Command \"" + command
 						+ "\"");

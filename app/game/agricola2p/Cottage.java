@@ -21,4 +21,9 @@ public class Cottage extends Building {
 		return false;
 	}
 
+	@Override
+	public int contains() {
+		return 1;
+	}
+
 }

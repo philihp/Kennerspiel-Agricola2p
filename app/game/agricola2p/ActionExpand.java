@@ -23,7 +23,7 @@ public class ActionExpand extends Action {
 		TaskExpand task = new TaskExpand(board);
 		board.tasks.put(COMMAND, task);
 		
-		if(board.gameBoard.findExpansion() == null) {
+		if(board.gameBoard.find(Expansion.class) == null) {
 			task.usable = false;
 		}
 	}

@@ -17,7 +17,7 @@ public class TaskExpand extends Task {
 	}
 	
 	public boolean isUsable() {
-		return usable && board.gameBoard.findExpansion() != null;
+		return usable && board.gameBoard.find(Expansion.class) != null;
 	}
 
 	@Override

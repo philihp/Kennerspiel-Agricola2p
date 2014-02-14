@@ -4,19 +4,17 @@ import static game.agricola2p.PlayerColor.RED;
 
 import java.util.*;
 
-public class GameBoard extends Element {
+public class GameBoard extends Container {
 
 	protected Map<String, Action> actions;
 	private StartingPlayerToken startingPlayerToken;
-	
-	public List<Element> resources = new ArrayList<Element>(4);
 	
 	private static void addAction(Map<String, Action> map, Action action) {
 		map.put(action.id, action);
 	}
 
 	public GameBoard(Board board) {
-		super(board);
+		super(board, 18);
 
 		resources.add(new Expansion(board));
 		resources.add(new Expansion(board));
@@ -26,6 +24,16 @@ public class GameBoard extends Element {
 		resources.add(new Stall(board));
 		resources.add(new Stall(board));
 		resources.add(new Stall(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
+		resources.add(new Trough(board));
 		
 		this.actions = new HashMap<String, Action>();
 		this.startingPlayerToken = new StartingPlayerToken(board);
@@ -38,7 +46,7 @@ public class GameBoard extends Element {
 		addAction(actions, new ActionBuildingMaterials(board));
 		addAction(actions, new ActionExpand(board));
 		addAction(actions, new ActionStall(board));
-		//
+		addAction(actions, new ActionTrough(board));
 		addAction(actions, new ActionMillpond(board));
 		addAction(actions, new ActionPigsAndSheep(board));
 		//
@@ -47,22 +55,6 @@ public class GameBoard extends Element {
 		addAction(actions, new ActionHorsesAndSheep(board));
 		
 		addActionTask();
-	}
-	
-	protected Expansion findExpansion() {
-		for(Element e : resources) {
-			if(e instanceof Expansion)
-				return (Expansion)e;
-		}
-		return null;
-	}
-	
-	protected Stall findStall() {
-		for(Element e : resources) {
-			if(e instanceof Stall)
-				return (Stall)e;
-		}
-		return null;
 	}
 	
 	protected void addActionTask() {

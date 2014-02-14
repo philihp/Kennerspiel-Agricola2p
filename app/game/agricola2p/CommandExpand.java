@@ -20,7 +20,7 @@ public class CommandExpand implements Command {
 	public void execute() throws GameError {
 		((TaskExpand)board.tasks.get("EXPAND")).usable = false;
 		
-		Expansion expansion = board.gameBoard.findExpansion();
+		Expansion expansion = board.gameBoard.find(Expansion.class);
 		if(expansion == null)
 			//there are no more expansions
 			return;

@@ -14,6 +14,8 @@ public class LotPasture extends Lot {
 	}
 
 	protected Building building;
+	
+	protected Trough trough;
 
 	@Override
 	public String getType() {
