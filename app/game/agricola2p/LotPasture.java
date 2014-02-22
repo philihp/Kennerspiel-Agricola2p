@@ -22,6 +22,10 @@ public class LotPasture extends Lot {
 		return "LOT_P";
 	}
 	
+	public String getTrough() {
+		return trough==null?"Yes":"No";
+	}
+	
 	public Building getBuilding() {
 		return building;
 	}
