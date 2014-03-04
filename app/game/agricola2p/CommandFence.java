@@ -14,6 +14,10 @@ public class CommandFence implements Command {
 	public CommandFence(Board board, String[] params) {
 		this.board = board;
 		this.params = params;
+	}	
+	
+	public String getText() {
+		return "FENCE "+params[0]+" "+params[1];
 	}
 
 	@Override

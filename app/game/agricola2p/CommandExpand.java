@@ -15,6 +15,10 @@ public class CommandExpand implements Command {
 		this.board = board;
 		this.params = params;
 	}
+	
+	public String getText() {
+		return "EXPAND "+params[0];
+	}
 
 	@Override
 	public void execute() throws GameError {

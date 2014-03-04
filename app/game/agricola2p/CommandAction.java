@@ -15,6 +15,10 @@ public class CommandAction implements Command {
 		this.board = board;
 		this.params = params;
 	}
+	
+	public String getText() {
+		return "ACTION "+params[0];
+	}
 
 	@Override
 	public void execute() throws GameError {
@@ -33,7 +37,6 @@ public class CommandAction implements Command {
 	
 		((TaskAction)board.tasks.get("ACTION")).usable = false;
 		((TaskCommit)board.tasks.get("COMMIT")).usable = true;
-		
 	}
 
 }

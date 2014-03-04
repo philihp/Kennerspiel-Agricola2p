@@ -18,10 +18,14 @@ public class CommandStable implements Command {
 		this.board = board;
 		this.params = params;
 	}
+	
+	public String getText() {
+		return "STABLE "+params[0]+" "+params[1]+" "+params[2];
+	}
 
 	@Override
 	public void execute() throws GameError {		
-		if(params.length != 2)
+		if(params.length != 3)
 			throw new GameError("STALL needs a row and column as 2 parameters, as well as STONE or WOOD for the 3rd parameter.");
 		
 		int row = Integer.parseInt(params[0]);

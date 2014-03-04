@@ -15,6 +15,10 @@ public class CommandComment implements Command {
 			this.command = command;
 		}
 	}
+	
+	public String getText() {
+		return "#"+command;
+	}
 
 	@Override
 	public void execute() {

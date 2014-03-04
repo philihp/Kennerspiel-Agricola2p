@@ -15,11 +15,15 @@ public class CommandBuild implements Command {
 		this.board = board;
 		this.params = params;
 	}
+	
+	public String getText() {
+		return "BUILD "+params[0]+" "+params[1];
+	}
 
 	@Override
 	public void execute() throws GameError {		
 		if(params.length != 2)
-			throw new GameError("STALL needs a row and column as parameters");
+			throw new GameError("BUILD needs a row and column as parameters");
 		
 		int row = Integer.parseInt(params[0]);
 		int col = Integer.parseInt(params[1]);

@@ -13,6 +13,10 @@ public class CommandCommit implements Command {
 	public CommandCommit(Board board) {
 		this.board = board;
 	}
+		
+	public String getText() {
+		return "COMMIT";
+	}
 
 	/**
 	 * Swaps the color.

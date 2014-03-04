@@ -15,6 +15,10 @@ public class CommandStall implements Command {
 		this.board = board;
 		this.params = params;
 	}
+	
+	public String getText() {
+		return "STALL "+params[0]+" "+params[1];
+	}
 
 	@Override
 	public void execute() throws GameError {		
