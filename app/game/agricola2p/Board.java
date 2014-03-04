@@ -82,6 +82,10 @@ public class Board extends game.Board {
 		}
 	}
 	
+	public Set<String> getActivePlayer() {
+		return new HashSet<String>(Arrays.asList(new String[] {currentPlayer.name()}));
+	}
+	
 	protected void resetTasks() {
 		gameBoard.resetTasks();
 	}
